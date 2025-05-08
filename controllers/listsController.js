@@ -2,7 +2,7 @@ const axios = require('axios');
 const Book = require('../models/bookModel');
 const GOOGLE_API_KEY = 'AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc'; 
 const { STATUS_CODE } = require("../constants/statusCode");
-const { MENU_LINKS } = require('../constants/navigation');
+const { MENU_LINKS } = require("../constants/navigation");
 
 exports.searchBooks = async (req, res) => {
   const { q } = req.query;
@@ -56,12 +56,13 @@ exports.deleteBook = (req, res) => {
   res.json(deleted);
 };
 
-exports.getHomeView = (req, res) => {
+exports.getListsView = (req, res) => {
     
-    res.render("bookHomePage.ejs", {
-      headTitle: "Home",
-      path: "/",
-      activeLinkPath: '/', 
+    res.render("listsPage.ejs", {
+      headTitle: "Your Lists",
+      path: "/lists",
+      activeLinkPath: '/lists',
       menuLinks: MENU_LINKS,
+      
     });
   };
