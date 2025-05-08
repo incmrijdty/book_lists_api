@@ -25,8 +25,15 @@ exports.searchBooks = async (req, res) => {
       thumbnail: item.volumeInfo.imageLinks?.thumbnail || '',
     }));
 
-    res.json(books);
+    res.render('search.ejs', {
+      books,
+      query: q,
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "/search"
+    });
+
   } catch (error) {
+    console.error('Error fetching books:', error);
     res.status(STATUS_CODE.INTERNAL_SERVER).json({ message: 'Failed to fetch books', error: error.message });
   }
 };

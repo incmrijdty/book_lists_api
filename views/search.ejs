@@ -1,0 +1,22 @@
+
+<html>
+  <head>
+    <title>Book Search Results</title>
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <%- include('partials/navigation', { menuLinks, activeLinkPath }) %>
+    
+    <h1>Results for "<%= query %></h1>
+
+    <ul class="book_list">
+      <% books.forEach(book => { %>
+        <li class="book_card">
+          <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
+          <h2><%= book.title %></h2>
+          <p><%= book.authors.join(', ') %></p>
+        </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

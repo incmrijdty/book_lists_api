@@ -51,4 +51,21 @@ body {
     background-color: #3d1b48;
   }
   
+
+  .book_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .book_card {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: rgb(0, 0, 0);
+    position: relative;
+    align-items: center;
+  }
   
