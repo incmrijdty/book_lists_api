@@ -8,6 +8,17 @@
       <%- include('partials/navigation', { menuLinks: menuLinks, activeLinkPath:
       activeLinkPath }); %>
       <h1 class="heading">Home</h1>
+      <form class="search" action="/search" method="GET">
+        <div class="search_group">
+          <input 
+            id="query" 
+            class="search_input" 
+            type="text" 
+            name="q" 
+            placeholder="Search for books"/>
+        </div>
+        <button class="button" type="submit">Search</button>
+      </form>
     </main>
   </body>
 </html>

@@ -12,14 +12,15 @@ body {
   }
   
   .heading {
-    color: rgb(47, 38, 216);
+    color: rgb(0, 0, 0);
     margin: 0;
     font-size: 2.2rem;
   }
   
   .navigation {
     background-color: #542563;
-    padding: 0.5rem 0;
+    padding: 0.5rem 2;
+    margin: 0;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
@@ -54,11 +55,12 @@ body {
 
   .book_list {
     list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin: 0;
     padding: 0;
-    display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .book_card {
@@ -67,5 +69,69 @@ body {
     color: rgb(0, 0, 0);
     position: relative;
     align-items: center;
+  }
+  
+  .search {
+    background-color: #542563;
+    padding: 1.15rem;
+    border-radius: 3rem;
+    margin: 10 auto;
+    max-width: 400px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .search_group {
+    text-align: left;
+  }
+  
+  
+  .search_input {
+    width: 130%;
+    height: 2.5rem;
+    padding: 8px;
+    background-color: #974ab1;
+    border: 1px solid #000000;
+    letter-spacing: inherit;
+    border-radius: 3rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    margin-right: 0.5rem;
+  }
+
+  .search_input::placeholder {
+    color: rgb(0, 0, 0);
+  }
+  
+  .search_input:focus {
+    outline: none;
+    border-color: #974ab1;
+    border: 1px solid #000000;
+  }
+  
+  .button {
+    padding: 8px;
+    height: 2.5rem;
+    background-color: #4f1c61;
+    color: rgb(255, 255, 255);
+    border: 1px solid #000000;
+    border-radius: 3rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto;
+  }
+  
+  .button:hover {
+    background-color: #3d1b48;
+    transform: translateY(-2px);
+  }
+  
+  .button:active {
+    background-color: #4a2059;
+    transform: translateY(0);
   }
   

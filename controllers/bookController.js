@@ -6,7 +6,11 @@ const { MENU_LINKS } = require('../constants/navigation');
 
 exports.searchBooks = async (req, res) => {
   const { q } = req.query;
-  if (!q) return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'Missing search query' });
+  if (!q) return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
+    headTitle: "404",
+    activeLinkPath: '', 
+    menuLinks: MENU_LINKS,
+  });
 
   try {
     const response = await axios.get('https://www.googleapis.com/books/v1/volumes', {
@@ -36,6 +40,7 @@ exports.searchBooks = async (req, res) => {
     console.error('Error fetching books:', error);
     res.status(STATUS_CODE.INTERNAL_SERVER).json({ message: 'Failed to fetch books', error: error.message });
   }
+  //to add: no results found
 };
 
 

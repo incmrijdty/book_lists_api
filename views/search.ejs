@@ -5,18 +5,30 @@
     <link rel="stylesheet" href="/main.css">
   </head>
   <body>
-    <%- include('partials/navigation', { menuLinks, activeLinkPath }) %>
-    
-    <h1>Results for "<%= query %></h1>
+    <main>
+     <%- include('partials/navigation', { menuLinks, activeLinkPath }) %>
+      <form class="search" action="/search" method="GET">
+       <div class="search_group">
+         <input 
+          id="query" 
+          class="search_input" 
+          type="text" 
+          name="q"
+          placeholder="Search for books" />
+       </div>
+       <button class="button" type="submit">Search</button>
+      </form>
+     <h1 class="heading">Results for "<%= query %>"</h1>
 
-    <ul class="book_list">
-      <% books.forEach(book => { %>
-        <li class="book_card">
-          <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
-          <h2><%= book.title %></h2>
-          <p><%= book.authors.join(', ') %></p>
-        </li>
-      <% }) %>
-    </ul>
+      <ul class="book_list">
+       <% books.forEach(book => { %>
+         <li class="book_card">
+           <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
+           <h2><%= book.title %></h2>
+           <p><%= book.authors.join(', ') %></p>
+         </li>
+       <% }) %>
+      </ul>
+    </main>
   </body>
 </html>
