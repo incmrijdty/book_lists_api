@@ -13,7 +13,7 @@ body {
   
   .heading {
     color: rgb(0, 0, 0);
-    margin: 0;
+    margin: 0.5rem;
     font-size: 2.2rem;
   }
   
@@ -75,7 +75,7 @@ body {
     background-color: #542563;
     padding: 1.15rem;
     border-radius: 3rem;
-    margin: 10 auto;
+    margin: 15 auto;
     max-width: 400px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;

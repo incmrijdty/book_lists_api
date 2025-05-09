@@ -26,6 +26,7 @@ exports.searchBooks = async (req, res) => {
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors || [],
       description: item.volumeInfo.description || '',
+      // to add: no authors/unknown
       thumbnail: item.volumeInfo.imageLinks?.thumbnail || '',
     }));
 
@@ -36,11 +37,12 @@ exports.searchBooks = async (req, res) => {
       activeLinkPath: "/search"
     });
 
+    //to add: no results found
+
   } catch (error) {
     console.error('Error fetching books:', error);
     res.status(STATUS_CODE.INTERNAL_SERVER).json({ message: 'Failed to fetch books', error: error.message });
   }
-  //to add: no results found
 };
 
 
@@ -58,7 +60,7 @@ exports.addBookToUserList = (req, res) => {
   const added = Book.add({ id, title, authors, description, thumbnail });
   if (!added) return res.status(STATUS_CODE.CONFLICT).json({ message: 'Book already in list' });
 
-  res.status(STATUS_CODE.OK).json(added);
+  res.redirect('/lists');
 };
 
 

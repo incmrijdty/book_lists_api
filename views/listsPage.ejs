@@ -7,6 +7,16 @@
     <main>
       <%- include('partials/navigation', { menuLinks, activeLinkPath }); %>
       <h1 class="heading">Your lists</h1>
+      <ul class="book_list">
+        <% savedBooks.forEach(book => { %>
+          <li class="book_card">
+            <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
+            <h2><%= book.title %></h2>
+            <p><%= book.authors %></p>
+            <p><%= book.description %></p>
+          </li>
+        <% }); %>
+      </ul>
     </main>
   </body>
 </html>

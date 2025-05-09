@@ -13,7 +13,9 @@ app.set("views", "views");
 
 
 app.use(express.static(getFileFromAbsolutePath("public")));
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(express.json()); // For JSON payloads
+app.use(express.urlencoded({ extended: true })); // For form submissions
 
 app.use((request, _response, next) => {
     const { url, method } = request;
