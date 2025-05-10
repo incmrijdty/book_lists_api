@@ -1,8 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const { PORT } = require("./config");
 const bookRoutes = require("./routing/bookRouting");
 const listsRoutes = require("./routing/listsRouting");
+const logoutRoutes = require("./routing/logoutRouting");
+const killRoutes = require("./routing/killApplicationRouting");
 const getFileFromAbsolutePath = require("./utils/getFileFromAbsolutePath");
 const logger = require("./utils/logger");
 
@@ -26,6 +27,8 @@ app.use((request, _response, next) => {
 
 app.use("/", bookRoutes);
 app.use("/lists", listsRoutes); 
+app.use("/logout", logoutRoutes);
+app.use("/kill", killRoutes);
 
 app.use((request, response) => {
     const { url } = request;

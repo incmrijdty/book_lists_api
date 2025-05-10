@@ -23,20 +23,23 @@
       <ul class="book_list">
        <% books.forEach(book => { %>
          <li class="book_card">
-           <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
-           <h2><%= book.title %></h2>
-           <p><%= book.authors.join(', ') %></p>
-           <p><%= book.description %></p>
-
-           <form action="/add" method="POST">
-            <input type="hidden" name="id" value="<%= book.id %>">
-            <input type="hidden" name="title" value="<%= book.title %>">
-            <input type="hidden" name="authors" value="<%= book.authors.join(', ') %>">
-            <input type="hidden" name="description" value="<%= book.description %>">
-            <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
-            <button type="submit">Add to List</button>
-           </form>
-
+           <div class = "book_image_container">
+              <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
+              <div class = "book_overlay">
+                <p><%= book.title %></p>
+                <p><%= book.description %></p>
+                <form action="/add" method="POST">
+                  <input type="hidden" name="id" value="<%= book.id %>">
+                  <input type="hidden" name="title" value="<%= book.title %>">
+                  <input type="hidden" name="authors" value="<%= book.authors.join(', ') %>">
+                  <input type="hidden" name="description" value="<%= book.description %>">
+                  <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                  <button class = "button" type="submit">Add to List</button>
+                </form>
+              </div>
+           </div>
+           <p class="book_title"><%= book.title %></p>
+           <p class="book_authors"><%= book.authors.join(', ') %></p>
          </li>
        <% }) %>
       </ul>

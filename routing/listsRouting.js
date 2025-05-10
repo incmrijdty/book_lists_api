@@ -4,11 +4,8 @@ const router = express.Router();
 const listsController = require('../controllers/listsController');
 
 
-//router.get('/search', bookController.searchBooks);
-
-
 router.get('/', listsController.getListsView);
-//router.post('/', bookController.addBookToUserList);
-//router.delete('/:id', bookController.deleteBook);
+router.post("/add-list", listsController.createNewList);
+router.get("/:name", listsController.getListView);
 
 module.exports = router;

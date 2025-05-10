@@ -17,7 +17,7 @@ exports.searchBooks = async (req, res) => {
       params: {
         q,
         key: GOOGLE_API_KEY,
-        maxResults: 10
+        maxResults: 40
       }
     });
 
