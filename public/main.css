@@ -298,6 +298,13 @@ main {
 .home_title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #fff;
+  text-shadow:
+  0 0 5px rgb(0, 0, 0),
+  0 0 10px rgb(0, 0, 0),
+  0 0 20px rgb(0, 0, 0),              
+  0 0 40px rgb(0, 0, 0),
+  0 0 80px rgb(0, 0, 0);
 }
 
 .content_area {
@@ -341,4 +348,48 @@ main {
 
 .modal-window .button {
   margin-right: 0.5rem;
+}
+
+
+.overlay_actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.icon_button {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  color: white;
+}
+
+.custom_list_dropdown {
+  position: relative;
+}
+
+.dropdown_menu {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+.dropdown_item {
+  background: white;
+  border: none;
+  padding: 6px 12px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown_item:hover {
+  background-color: #eee;
 }

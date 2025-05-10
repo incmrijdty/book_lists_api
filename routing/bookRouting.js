@@ -6,9 +6,6 @@ const bookController = require('../controllers/bookController');
 
 router.get('/search', bookController.searchBooks);
 
-
 router.get('/', bookController.getHomeView);
-router.post('/add', bookController.addBookToUserList);
-router.delete('/:id', bookController.deleteBook);
 
 module.exports = router;

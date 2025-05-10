@@ -1,8 +1,8 @@
 const axios = require('axios');
-const Book = require('../models/bookModel');
 const GOOGLE_API_KEY = 'AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc'; 
 const { STATUS_CODE } = require("../constants/statusCode");
 const { MENU_LINKS } = require('../constants/navigation');
+const List = require('../models/listModel');
 
 exports.searchBooks = async (req, res) => {
   const { q } = req.query;
@@ -34,7 +34,8 @@ exports.searchBooks = async (req, res) => {
       books,
       query: q,
       menuLinks: MENU_LINKS,
-      activeLinkPath: "/search"
+      activeLinkPath: "/search",
+      userLists: List.getAll()
     });
 
     //to add: no results found
@@ -43,31 +44,6 @@ exports.searchBooks = async (req, res) => {
     console.error('Error fetching books:', error);
     res.status(STATUS_CODE.INTERNAL_SERVER).json({ message: 'Failed to fetch books', error: error.message });
   }
-};
-
-
-exports.getUserBooks = (req, res) => {
-  res.json(Book.getAll());
-};
-
-
-exports.addBookToUserList = (req, res) => {
-  const { id, title, authors, description, thumbnail } = req.body;
-
-  if (!id || !title)
-    return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'Book ID and title are required' });
-
-  const added = Book.add({ id, title, authors, description, thumbnail });
-  if (!added) return res.status(STATUS_CODE.CONFLICT).json({ message: 'Book already in list' });
-
-  res.redirect('/lists');
-};
-
-
-exports.deleteBook = (req, res) => {
-  const deleted = Book.remove(req.params.id);
-  if (!deleted) return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'Book not found in list' });
-  res.json(deleted);
 };
 
 exports.getHomeView = (req, res) => {

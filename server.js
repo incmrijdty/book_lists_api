@@ -14,11 +14,13 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 app.use(express.static(getFileFromAbsolutePath("public")));
 
-app.use(express.json()); // For JSON payloads
-app.use(express.urlencoded({ extended: true })); // For form submissions
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
 app.use((request, _response, next) => {
     const { url, method } = request;
