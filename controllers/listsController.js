@@ -107,9 +107,6 @@ exports.deleteBookFromUserList = (req, res) => {
 
   const list = List.findByName(listName);
 
-  console.log("listname:", listName);
-  console.log("bookid:", bookId);
-
   if (!list) {
     return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'List not found' });
   }

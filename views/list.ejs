@@ -32,6 +32,10 @@
 
       <section class="content_area">
         <h1 class="heading"><%= list.name %></h1>
+        <form class= "delete_list" action="/lists/<%= list.name %>?_method=DELETE" method="POST"
+            onsubmit="return confirm('Are you sure you want to delete this list?');">
+            <button class="button" type="submit">Delete</button>
+        </form>
         <ul class="book_list">
           <% savedBooks.forEach(book => { %>
           <li class="book_card">
