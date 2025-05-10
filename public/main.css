@@ -246,12 +246,13 @@ main {
 
 .book_overlay p {
   display: -webkit-box;
-  -webkit-line-clamp: 10;
-  line-clamp: 10;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 7px;
+  text-align: left;
 }
 
 .home_container {
