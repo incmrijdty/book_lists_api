@@ -29,13 +29,13 @@ exports.searchBooks = async (req, res) => {
       // to add: no authors/unknown
       thumbnail: item.volumeInfo.imageLinks?.thumbnail || '',
     }));
-
+    const savedBooks = List.getAll();
     res.render('search.ejs', {
       books,
       query: q,
       menuLinks: MENU_LINKS,
       activeLinkPath: "/search",
-      userLists: List.getAll()
+      savedBooks,
     });
 
     //to add: no results found

@@ -25,12 +25,19 @@ exports.getListsView = (req, res) => {
   };
 
 exports.createNewList = (req, res) => {
-  const newList = new List(req.body.name);
+  const rawName = req.body.name;
+  const name = rawName?.trim();
+  
+  const existing = List.findByName(name);
+  if (existing) {
+    return res.status(STATUS_CODE.CONFLICT).json({ message: 'List already exists' });
+  }
+
+  const newList = new List(name);
   List.add(newList);
 
   res.status(STATUS_CODE.FOUND).redirect("/lists");
 
-  //cancel button doesnt work
 };
 
 
@@ -51,6 +58,7 @@ exports.getListView = (request, response) => {
     //readList,
     //toBeReadList,
     savedLists,
+    userLists: List.getAll(),
     savedBooks,
   });
 };
