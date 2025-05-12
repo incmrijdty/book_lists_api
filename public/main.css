@@ -415,7 +415,6 @@ main {
 }
 
 .delete_list {
-  background-color: #542563;
   color: #fff;
   border: none;
   padding: 10px;
@@ -426,14 +425,10 @@ main {
   transition: background-color 0.3s ease;
 }
 
-.delete_list:hover {
-  background-color: #3d1b48;
-}
-
 .search_btn_sb {
   background-color: #4f1c61;
   color: #fff;
-  border: none;
+  border: 1px solid #000000;
   padding: 8px;
   margin: 5px;
   width: 60%;
@@ -471,4 +466,18 @@ main {
   outline: none;
   border-color: #974ab1;
   border: 1px solid #000000;
+}
+
+.create_list_btn_dp_dwn {
+  background-color: #542563;
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.create_list_btn_dp_dwn:hover {
+  background-color: #3d1b48;
 }

@@ -61,6 +61,7 @@
                                 <button class="dropdown_item" type="submit"><%= list.name %></button>
                               </form>
                             <% }) %>
+                            <button class="create_list_btn_dp_dwn">+ Create New List</button>
                           </div>
                         </div>
                     </div>
@@ -80,24 +81,33 @@
     </main>
 
     <script>
-      const modal = document.getElementById('modalOverlay');
-      const openBtn = document.getElementById('openModalBtn');
-      const closeBtns = document.querySelectorAll('.close-modal');
+      document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('modalOverlay');
+        const openBtns = document.querySelectorAll(".create_list_btn_dp_dwn");
+        const closeBtns = document.querySelectorAll('.close-modal');
+        const openBtn = document.getElementById('openModalBtn');
 
-      openBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-      });
-
-      closeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          modal.classList.add('hidden');
+        openBtns.forEach(openBtn => {
+          openBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+          });
         });
-      });
 
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
-        }
+        openBtn.addEventListener('click', () => {
+          modal.classList.remove("hidden");
+        });
+
+        closeBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+          });
+        });
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.add('hidden');
+          }
+        });
       });
     </script>
     <script>
@@ -115,5 +125,17 @@
         });
       });
     </script>
+    <div id="modalOverlay" class="modal-overlay hidden">
+      <div class="modal-window">
+        <h2>Create New List</h2>
+        <form action="/lists/add" method="POST">
+          <input type="text" name="name" placeholder="List name" required />
+          <div style="margin-top: 1rem;">
+            <button class ="button" type="submit" class="button">Create</button>
+            <button type="button" class="button close-modal">Cancel</button> 
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
