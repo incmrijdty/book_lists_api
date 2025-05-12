@@ -2,23 +2,37 @@ const { STATUS_CODE } = require("../constants/statusCode");
 const List = require("../models/listModel");
 const { MENU_LINKS } = require("../constants/navigation");
 
-//const favouritesList = new List("Favourites");
-//const readList = new List("Read");
-//const toBeReadList = new List("To-Be-Read");
+function ensureDefaultLists() {
+  const defaultNames = ['Favourites', 'Read', 'To Be Read'];
+
+  defaultNames.forEach(name => {
+    if (!List.findByName(name)) {
+      List.add(new List(name));
+    }
+  });
+} // omg how could i not figure out that the whole problem was that it was creating those default lists literally every time i was clicking on /lists page, since i have no check for the same list already existing, so now that it does check that they are being created only once at the beginning and it works im gonna cry
+
+
+ensureDefaultLists();
+
 
 exports.getListsView = (req, res) => {
 
   const savedLists = List.getAll();
-  //const savedBooks = List.getBooks();
+
+  const favouritesList = List.findByName("Favourites");
+  const readList = List.findByName("Read");
+  const toBeReadList = List.findByName("To Be Read");
+
 
     res.render("listsPage.ejs", {
       headTitle: "Your Lists",
       path: "/lists",
       activeLinkPath: '/lists',
       menuLinks: MENU_LINKS,
-      //favouritesList,
-      //readList,
-      //toBeReadList,
+      favouritesList,
+      readList,
+      toBeReadList,
       savedLists,
     });
     // several authors
@@ -48,17 +62,20 @@ exports.getListView = (request, response) => {
 
   const savedBooks = list.getBooks();
 
+  const favouritesList = List.findByName("Favourites");
+  const readList = List.findByName("Read");
+  const toBeReadList = List.findByName("To Be Read");
+
   response.render("list.ejs", {
     headTitle: "List",
     path: `/lists/${name}`,
     activeLinkPath: `/lists/${name}`,
     menuLinks: MENU_LINKS,
     list,
-    //favouritesList,
-    //readList,
-    //toBeReadList,
+    favouritesList,
+    readList,
+    toBeReadList,
     savedLists,
-    userLists: List.getAll(),
     savedBooks,
   });
 };
@@ -68,7 +85,7 @@ exports.deleteList = (req, res) => {
   const name = req.params.name;
   List.deleteByName(name);
 
-  res.status(STATUS_CODE.OK).json({ success: true });
+  res.status(STATUS_CODE.OK).redirect("/lists");
 
 };
 

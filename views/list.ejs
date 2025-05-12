@@ -45,7 +45,39 @@
                   <p><%= book.title %></p>
                   <p><%= book.description %></p>
                     <div class="overlay_actions">
-                      
+
+                        <form action="/lists/<%= favouritesList.name %>/add-book" method="POST">
+                          <input type="hidden" name="id" value="<%= book.id %>">
+                          <input type="hidden" name="title" value="<%= book.title %>">
+                          <input type="hidden" name="authors" value="<%= book.authors %>">
+                          <input type="hidden" name="description" value="<%= book.description %>">
+                          <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <button title="Add to Favorites" class="icon_button" type="submit">
+                            ❤️
+                          </button>
+                        </form>
+
+                        <form action="/lists/<%= toBeReadList.name %>/add-book" method="POST">
+                          <input type="hidden" name="id" value="<%= book.id %>">
+                          <input type="hidden" name="title" value="<%= book.title %>">
+                          <input type="hidden" name="authors" value="<%= book.authors %>">
+                          <input type="hidden" name="description" value="<%= book.description %>">
+                          <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <button title="Add to To Be Read" class="icon_button" type="submit">
+                            🏷️
+                          </button>
+                        </form>
+
+                        <form action="/lists/<%= readList.name %>/add-book" method="POST">
+                          <input type="hidden" name="id" value="<%= book.id %>">
+                          <input type="hidden" name="title" value="<%= book.title %>">
+                          <input type="hidden" name="authors" value="<%= book.authors %>">
+                          <input type="hidden" name="description" value="<%= book.description %>">
+                          <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <button title="Add to Read" class="icon_button" type="submit">
+                            ✅
+                          </button>
+                        </form>
                         <div class="custom_list_dropdown">
                           <button class="icon_button" title="Add to Custom List" onclick="toggleDropdown(this)">
                             ➕

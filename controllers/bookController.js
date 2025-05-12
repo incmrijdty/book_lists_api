@@ -4,6 +4,19 @@ const { STATUS_CODE } = require("../constants/statusCode");
 const { MENU_LINKS } = require('../constants/navigation');
 const List = require('../models/listModel');
 
+function ensureDefaultLists() {
+  const defaultNames = ['Favourites', 'Read', 'To Be Read'];
+
+  defaultNames.forEach(name => {
+    if (!List.findByName(name)) {
+      List.add(new List(name));
+    }
+  });
+} // omg how could i not figure out that the whole problem was that it was creating those default lists literally every time i was clicking on /lists page, since i have no check for the same list already existing, so now that it does check that they are being created only once at the beginning and it works im gonna cry
+
+
+ensureDefaultLists();
+
 exports.searchBooks = async (req, res) => {
   const { q } = req.query;
   if (!q) return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
@@ -29,19 +42,27 @@ exports.searchBooks = async (req, res) => {
       // to add: no authors/unknown
       thumbnail: item.volumeInfo.imageLinks?.thumbnail || '',
     }));
+
+    const favouritesList = List.findByName("Favourites");
+    const readList = List.findByName("Read");
+    const toBeReadList = List.findByName("To Be Read");
+
     const savedLists = List.getAll();
     res.render('search.ejs', {
       books,
       query: q,
       menuLinks: MENU_LINKS,
       activeLinkPath: "/search",
+      favouritesList,
+      readList,
+      toBeReadList,
       savedLists,
     });
 
     //to add: no results found
 
   } catch (error) {
-    console.error('Error fetching books:', error);
+    console.error('Error fetching books:', error); //change 404.ejs to just errors
     res.status(STATUS_CODE.INTERNAL_SERVER).json({ message: 'Failed to fetch books', error: error.message });
   }
 };
