@@ -2,6 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <title><%= list.name %> - Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/main.css" />
   </head>
   <body>
@@ -53,7 +54,7 @@
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
                           <button title="Add to Favorites" class="icon_button" type="submit">
-                            ❤️
+                            <img src="/icons/heart (3).png" alt="Add to Favorites" class="icon_image">
                           </button>
                         </form>
 
@@ -64,7 +65,7 @@
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
                           <button title="Add to To Be Read" class="icon_button" type="submit">
-                            🏷️
+                            <img src="/icons/save-instagram.png" alt="Add to Favorites" class="icon_image">
                           </button>
                         </form>
 
@@ -75,12 +76,12 @@
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
                           <button title="Add to Read" class="icon_button" type="submit">
-                            ✅
+                            <img src="/icons/check.png" alt="Add to Favorites" class="icon_image">
                           </button>
                         </form>
                         <div class="custom_list_dropdown">
                           <button class="icon_button" title="Add to Custom List" onclick="toggleDropdown(this)">
-                            ➕
+                            <img src="/icons/add.png" alt="Add to Favorites" class="icon_image">
                           </button>
                           <div class="dropdown_menu">
                             <% savedLists.forEach(list => { %>
