@@ -11,12 +11,29 @@
       <aside class="sidebar">
         <form class="search_sidebar" action="/search" method="GET">
           <div class="search_group_sb">
-            <input 
-              id="query" 
-              class="search_input_sb" 
-              type="text" 
-              name="q"
-              placeholder="Search for books" />
+            <input type="text" name="q" placeholder="Search books..." value="<%= query %>" />
+
+            <input type="text" name="author" placeholder="Author" value="<%= author || '' %>"/>
+            <div class="filter_group">
+              <label for="subject">Genre:</label>
+              <select name="subject" id="subject" multiple>
+                <option value="Fantasy"<%= subject && subject.includes('Fantasy') ? 'selected' : '' %>>Fantasy</option>
+                <option value="Romance">Romance</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Science Fiction">Science Fiction</option>
+                <option value="Thriller">Thriller</option>
+                <!-- Add more if needed -->
+              </select>
+            </div>
+            <div class="filter_group">
+              <label for="year">Year:</label>
+              <select name="year" id="year" multiple>
+                <% for (let y = 2024; y >= 1900; y--) { %>
+                  <option value="<%= y %>"><%= y %></option>
+                <% } %>
+              </select>
+            </div>
+            <a href="/search?q=<%= query %>">Reset</a>
           </div>
           <button class="search_btn_sb" type="submit">Search</button>
         </form>
@@ -91,6 +108,8 @@
               </div>
             <p class="book_title"><%= book.title %></p>
             <p class="book_authors"><%= book.authors.join(', ') %></p>
+            <p class="book_genre"><%= book.subject %></p>
+            <p class="book_year"><%= book.year %></p>
           </li>
           <% }) %>
         </ul>

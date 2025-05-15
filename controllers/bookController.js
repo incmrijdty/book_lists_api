@@ -1,5 +1,5 @@
 const axios = require('axios');
-const GOOGLE_API_KEY = 'AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc'; 
+//const GOOGLE_API_KEY = 'AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc'; 
 const { STATUS_CODE } = require("../constants/statusCode");
 const { MENU_LINKS } = require('../constants/navigation');
 const List = require('../models/listModel');
@@ -12,13 +12,12 @@ function ensureDefaultLists() {
       List.add(new List(name));
     }
   });
-} // omg how could i not figure out that the whole problem was that it was creating those default lists literally every time i was clicking on /lists page, since i have no check for the same list already existing, so now that it does check that they are being created only once at the beginning and it works im gonna cry
-
+} 
 
 ensureDefaultLists();
 
 exports.searchBooks = async (req, res) => {
-  const { q } = req.query;
+  let { q, subject, year, author } = req.query;
   if (!q) return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
     headTitle: "404",
     activeLinkPath: '', 
@@ -26,22 +25,33 @@ exports.searchBooks = async (req, res) => {
   });
 
   try {
-    const response = await axios.get('https://www.googleapis.com/books/v1/volumes', {
-      params: {
-        q,
-        key: GOOGLE_API_KEY,
-        maxResults: 40
-      }
-    });
+    const params = new URLSearchParams();
 
-    const books = (response.data.items || []).map(item => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      authors: item.volumeInfo.authors || [],
-      description: item.volumeInfo.description || '',
-      // to add: no authors/unknown
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail || '',
+    params.append("q", q);
+    if (author) params.append("author", author);
+    if (subject) params.append("subject", subject);
+    params.append("limit", "100");
+
+    year = year ? (Array.isArray(year) ? year : [year]) : [];
+
+    
+    const response = await axios.get(`https://openlibrary.org/search.json?${params.toString()}`);
+    const docs = response.data.docs || [];
+    
+
+    let books = docs.map(item => ({
+      id: item.key,
+      title: item.title,
+      authors: item.author_name || [],
+      description: item.first_sentence?.[0] || '',
+      thumbnail: item.cover_i ? `https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg` : '',
+      year: item.first_publish_year || 'Unknown',
+      subjects: item.subject || ["Unknown"]
     }));
+
+    if (year.length > 0) {
+      books = books.filter(book => year.includes(String(book.year)));
+    }
 
     const favouritesList = List.findByName("Favourites");
     const readList = List.findByName("Read");
@@ -51,6 +61,9 @@ exports.searchBooks = async (req, res) => {
     res.render('search.ejs', {
       books,
       query: q,
+      subject,
+      year,
+      author,
       menuLinks: MENU_LINKS,
       activeLinkPath: "/search",
       favouritesList,
