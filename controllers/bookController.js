@@ -59,6 +59,7 @@ exports.searchBooks = async (req, res) => {
 
     const savedLists = List.getAll();
     res.render('search.ejs', {
+      headTitle: "Book Search Results",
       books,
       query: q,
       subject,
@@ -72,11 +73,13 @@ exports.searchBooks = async (req, res) => {
       savedLists,
     });
 
-    //to add: no results found
-
   } catch (error) {
-    console.error('Error fetching books:', error); //change 404.ejs to just errors
-    res.status(STATUS_CODE.INTERNAL_SERVER).json({ message: 'Failed to fetch books', error: error.message });
+    console.error('Error fetching books:', error);
+    res.status(STATUS_CODE.INTERNAL_SERVER).render("500.ejs", {
+      headTitle: "500",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
   }
 };
 

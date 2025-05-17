@@ -30,7 +30,7 @@ class List {
         if (!this.books.find(b => b.id === book.id))
             this.books.push(book);
             return book;
-        }
+    }
     
 
 
@@ -48,8 +48,5 @@ class List {
     }
 
 }
-
-
-
 
 module.exports = List;

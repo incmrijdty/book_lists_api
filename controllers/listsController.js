@@ -10,8 +10,7 @@ function ensureDefaultLists() {
       List.add(new List(name));
     }
   });
-} // omg how could i not figure out that the whole problem was that it was creating those default lists literally every time i was clicking on /lists page, since i have no check for the same list already existing, so now that it does check that they are being created only once at the beginning and it works im gonna cry
-
+} 
 
 ensureDefaultLists();
 
