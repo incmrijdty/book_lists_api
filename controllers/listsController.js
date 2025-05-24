@@ -43,7 +43,11 @@ exports.createNewList = (req, res) => {
   
   const existing = List.findByName(name);
   if (existing) {
-    return res.status(STATUS_CODE.CONFLICT).json({ message: 'List already exists' });
+    return res.status(STATUS_CODE.CONFLICT).render("409.ejs", {
+      headTitle: "409",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
   }
 
   const newList = new List(name);
@@ -94,16 +98,28 @@ exports.addBookToUserList = (req, res) => {
   const { name: listName } = req.params;
 
   if (!listName?.trim() || !id?.trim() || !title?.trim())
-    return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'Book ID and title are required' });
+    return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
+      headTitle: "404",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
 
   let list = List.findByName(listName);
   
   if (!list) {
-    return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'List not found' });
+    return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
+      headTitle: "404",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
   }
 
   const added = list.addBook({ id, title, authors, description, thumbnail });
-  if (!added) return res.status(STATUS_CODE.CONFLICT).json({ message: 'Book already in list' });
+  if (!added) return res.status(STATUS_CODE.CONFLICT).render("409.ejs", {
+      headTitle: "409",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
 
   res.status(STATUS_CODE.OK).redirect(`/lists/${encodeURIComponent(listName)}`);
 
@@ -117,7 +133,11 @@ exports.getBooksFromUserList = (req, res) => {
   const list = List.findByName(listName);
 
   if (!list) {
-    return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'List not found' });
+    return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
+      headTitle: "404",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
   }
 
   res.status(STATUS_CODE.OK).json(list.getBooks());
@@ -132,12 +152,20 @@ exports.deleteBookFromUserList = (req, res) => {
   const list = List.findByName(listName);
 
   if (!list) {
-    return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'List not found' });
+    return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
+      headTitle: "404",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
   }
 
   const deleted = list.deleteBook(bookId);
   if (!deleted) 
-    return res.status(STATUS_CODE.NOT_FOUND).json({ message: 'Book not found in list' });
+    return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
+      headTitle: "404",
+      menuLinks: MENU_LINKS,
+      activeLinkPath: "",
+    });
 
   res.status(STATUS_CODE.OK).redirect(`/lists/${encodeURIComponent(listName)}`);
 
