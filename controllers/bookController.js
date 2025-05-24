@@ -29,7 +29,13 @@ exports.searchBooks = async (req, res) => {
 
     params.append("q", q);
     if (author) params.append("author", author);
-    if (subject) params.append("subject", subject);
+    if (subject) {
+      if (Array.isArray(subject)) {
+        subject.forEach(s => params.append("subject", s));
+      } else {
+        params.append("subject", subject);
+      }
+    }
     params.append("limit", "100");
 
     year = year ? (Array.isArray(year) ? year : [year]) : [];

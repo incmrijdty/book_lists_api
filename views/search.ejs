@@ -11,27 +11,26 @@
       <aside class="sidebar">
         <form class="search_sidebar" action="/search" method="GET">
           <div class="search_group_sb">
-            <input type="text" name="q" placeholder="Search books..." value="<%= query %>" />
+            <input class="search_input_sb" type="text" name="q" placeholder="Search books..." value="<%= query %>" />
 
-            <input type="text" name="author" placeholder="Author" value="<%= author || '' %>"/>
+            <input class="search_input_sb" type="text" name="author" placeholder="Author" value="<%= author || '' %>"/>
             <div class="filter_group">
               <label for="subject">Genre:</label>
-              <select name="subject" id="subject" multiple>
-                <option value="Fantasy"<%= subject && subject.includes('Fantasy') ? 'selected' : '' %>>Fantasy</option>
-                <option value="Romance">Romance</option>
-                <option value="Mystery">Mystery</option>
-                <option value="Science Fiction">Science Fiction</option>
-                <option value="Thriller">Thriller</option>
-                <!-- Add more if needed -->
-              </select>
+              <div class="checkbox_list">
+                <label><input type="checkbox" name="subject" id="subject" value="Fantasy">Fantasy</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Romance">Romance</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Mystery">Mystery</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Science Fiction">Science Fiction</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Thriller">Thriller</br>
+              </div>
             </div>
             <div class="filter_group">
               <label for="year">Year:</label>
-              <select name="year" id="year" multiple>
-                <% for (let y = 2024; y >= 1900; y--) { %>
-                  <option value="<%= y %>"><%= y %></option>
+              <div class="checkbox_list">
+                <% for (let y = 2025; y >= 1900; y--) { %>
+                  <input type="checkbox" name="year" id="year" value="<%= y %>"><%= y %></br>
                 <% } %>
-              </select>
+              </div>
             </div>
             <a href="/search?q=<%= query %>">Reset</a>
           </div>

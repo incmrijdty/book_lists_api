@@ -359,6 +359,7 @@ main {
   border-radius: 8px;
   width: 300px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .hidden {
@@ -473,6 +474,8 @@ main {
   margin-right: 0.5rem;
   font-family: "Jost", sans-serif;
   padding: 8px;
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
 }
 
 .search_input_sb::placeholder {
@@ -500,3 +503,22 @@ main {
   background-color: #3d1b48;
 }
 
+.checkbox_list {
+  max-height: 170px;
+  overflow-y: auto;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #974ab1;
+  color:#000000
+}
+.checkbox_list label {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.filter_group {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
