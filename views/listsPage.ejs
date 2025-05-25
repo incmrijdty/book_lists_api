@@ -6,16 +6,9 @@
     <link rel="stylesheet" href="/main.css" />
   </head>
   <body>
-    <%- include('partials/navigation', { menuLinks, activeLinkPath }); %>
-    <main class="layout">
-
-      <aside class="sidebar">
-        <h2>Your Lists</h2>
-        <ul class="list_menu">
-          <% savedLists.forEach(list => { %>
-          <li><a href="/lists/<%= list.name %>"><%= list.name %></a></li>
-          <% }); %>
-        </ul>
+    <main>
+      <%- include('partials/navigation', { menuLinks, activeLinkPath }); %>
+        <h1 class="heading">Your lists</h1>
         <div id="modalOverlay" class="modal-overlay hidden">
           <div class="modal-window">
             <h2>Create New List</h2>
@@ -29,11 +22,17 @@
           </div>
         </div>
         <button class="create_list_btn" id="openModalBtn">+ Create New List</button>
-      </aside>
 
-      <section class="content_area">
-        <h1 class="heading">Your lists</h1>
-      </section>
+        <ul class="lists_list">
+          <% savedLists.forEach(list => { %>
+            <li class="list_item">
+              <img src="/images/dark Academia.jpeg" alt="Books List Cover" class="book_list_image" />
+              <p>
+                <a class="list_name" href="/lists/<%= list.name %>"><%= list.name %></a>
+              </p>
+            </li>
+          <% }); %>
+        </ul>
     </main>
     
     <script>
