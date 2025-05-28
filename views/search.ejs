@@ -22,6 +22,13 @@
                 <label><input type="checkbox" name="subject" id="subject" value="Mystery">Mystery</br>
                 <label><input type="checkbox" name="subject" id="subject" value="Science Fiction">Science Fiction</br>
                 <label><input type="checkbox" name="subject" id="subject" value="Thriller">Thriller</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Horror">Horror</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Historical Fiction">Historical Fiction</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Poetry">Poetry</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Mental Health">Mental Health</br>
+                <label><input type="checkbox" name="subject" id="subject" value="History">History</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Finance">Finance</br>
+                <label><input type="checkbox" name="subject" id="subject" value="Cooking">Cooking</br>
               </div>
             </div>
             <div class="filter_group">
@@ -48,9 +55,8 @@
                 <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
                   <div class = "book_overlay">
                     <p><%= book.title %></p>
-                    <div class = "description">
-                      <p><%= book.description %></p>
-                    </div>
+                    <p><%= book.year %></p>
+                    <p><%= book.description %></p>
                     <div class="overlay_actions">
                         <form action="/lists/<%= favouritesList.name %>/add-book" method="POST">
                           <input type="hidden" name="id" value="<%= book.id %>">
@@ -58,6 +64,8 @@
                           <input type="hidden" name="authors" value="<%= book.authors %>">
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <input type="hidden" name="year" value="<%= book.year %>">
+                          <input type="hidden" name="subjects" value="<%= book.subjects %>">
                           <button title="Add to Favorites" class="icon_button" type="submit">
                             <img src="/icons/heart (3).png" alt="Add to Favorites" class="icon_image">
                           </button>
@@ -69,6 +77,8 @@
                           <input type="hidden" name="authors" value="<%= book.authors %>">
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <input type="hidden" name="year" value="<%= book.year %>">
+                          <input type="hidden" name="subjects" value="<%= book.subjects %>">
                           <button title="Add to To Be Read" class="icon_button" type="submit">
                             <img src="/icons/save-instagram.png" alt="Add to Favorites" class="icon_image">
                           </button>
@@ -80,6 +90,8 @@
                           <input type="hidden" name="authors" value="<%= book.authors %>">
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <input type="hidden" name="year" value="<%= book.year %>">
+                          <input type="hidden" name="subjects" value="<%= book.subjects %>">
                           <button title="Add to Read" class="icon_button" type="submit">
                             <img src="/icons/check.png" alt="Add to Favorites" class="icon_image">
                           </button>
@@ -96,6 +108,8 @@
                                 <input type="hidden" name="authors" value="<%= book.authors %>">
                                 <input type="hidden" name="description" value="<%= book.description %>">
                                 <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                                <input type="hidden" name="year" value="<%= book.year %>">
+                                <input type="hidden" name="subjects" value="<%= book.subjects %>">
                                 <button class="dropdown_item" type="submit"><%= list.name %></button>
                               </form>
                             <% }) %>
@@ -107,8 +121,6 @@
               </div>
             <p class="book_title"><%= book.title %></p>
             <p class="book_authors"><%= book.authors.join(', ') %></p>
-            <p class="book_genre"><%= book.subject %></p>
-            <p class="book_year"><%= book.year %></p>
           </li>
           <% }) %>
         </ul>

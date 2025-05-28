@@ -255,30 +255,7 @@ main {
   font-size: 14px;
 }
 
-.description {
-    overflow: hidden;
-    max-height: 13.6em;
-}
-
-.description p {
-  display: -webkit-box;
-  -webkit-line-clamp: 9;
-  line-clamp: 9;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
-  padding: 7px;
-  line-height: 1.4em;
-  max-height: calc(1.4em * 9);
-}
-
-
 .book_overlay p {
-  display: -webkit-box;
-  -webkit-line-clamp: 9;
-  line-clamp: 9;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;

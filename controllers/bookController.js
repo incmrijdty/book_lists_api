@@ -1,5 +1,4 @@
-const axios = require('axios');
-//const GOOGLE_API_KEY = 'AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc'; 
+const axios = require('axios'); 
 const { STATUS_CODE } = require("../constants/statusCode");
 const { MENU_LINKS } = require('../constants/navigation');
 const List = require('../models/listModel');

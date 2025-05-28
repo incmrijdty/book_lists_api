@@ -44,6 +44,7 @@
                 <img src="<%= book.thumbnail %>" alt="<%= book.title %> cover" />
                 <div class = "book_overlay">
                   <p><%= book.title %></p>
+                  <p><%= book.year %></p>
                   <p><%= book.description %></p>
                     <div class="overlay_actions">
 
@@ -53,6 +54,8 @@
                           <input type="hidden" name="authors" value="<%= book.authors %>">
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <input type="hidden" name="year" value="<%= book.year %>">
+                          <input type="hidden" name="subjects" value="<%= book.subjects %>">
                           <button title="Add to Favorites" class="icon_button" type="submit">
                             <img src="/icons/heart (3).png" alt="Add to Favorites" class="icon_image">
                           </button>
@@ -64,6 +67,8 @@
                           <input type="hidden" name="authors" value="<%= book.authors %>">
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <input type="hidden" name="year" value="<%= book.year %>">
+                          <input type="hidden" name="subjects" value="<%= book.subjects %>">
                           <button title="Add to To Be Read" class="icon_button" type="submit">
                             <img src="/icons/save-instagram.png" alt="Add to Favorites" class="icon_image">
                           </button>
@@ -75,6 +80,8 @@
                           <input type="hidden" name="authors" value="<%= book.authors %>">
                           <input type="hidden" name="description" value="<%= book.description %>">
                           <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                          <input type="hidden" name="year" value="<%= book.year %>">
+                          <input type="hidden" name="subjects" value="<%= book.subjects %>">
                           <button title="Add to Read" class="icon_button" type="submit">
                             <img src="/icons/check.png" alt="Add to Favorites" class="icon_image">
                           </button>
@@ -91,6 +98,8 @@
                                 <input type="hidden" name="authors" value="<%= book.authors %>">
                                 <input type="hidden" name="description" value="<%= book.description %>">
                                 <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+                                <input type="hidden" name="year" value="<%= book.year %>">
+                                <input type="hidden" name="subjects" value="<%= book.subjects %>">
                                 <button class="dropdown_item" type="submit"><%= list.name %></button>
                               </form>
                             <% }) %>

@@ -43,7 +43,10 @@ app.use((request, response) => {
       activeLinkPath: "",
     });
     logger.getErrorLog(url);
-  });
+});
 
+app.use('/.well-known/appspecific', (req, res) => {
+  res.status(403).send('Forbidden');
+});
 
 app.listen(PORT);
