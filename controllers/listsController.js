@@ -34,7 +34,6 @@ exports.getListsView = (req, res) => {
       toBeReadList,
       savedLists,
     });
-    // several authors
   };
 
 exports.createNewList = (req, res) => {

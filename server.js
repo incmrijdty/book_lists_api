@@ -14,6 +14,10 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+app.get('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
+  res.status(204).send(); 
+});
+
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
@@ -43,10 +47,6 @@ app.use((request, response) => {
       activeLinkPath: "",
     });
     logger.getErrorLog(url);
-});
-
-app.use('/.well-known/appspecific', (req, res) => {
-  res.status(403).send('Forbidden');
 });
 
 app.listen(PORT);

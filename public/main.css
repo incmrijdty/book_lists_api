@@ -413,7 +413,7 @@ main {
   background-color: #eee;
 }
 
-.content_area delete_list {
+.content_area .delete_list {
   color: #fff;
   border: none;
   padding: 10px;
