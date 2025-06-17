@@ -58,6 +58,7 @@
                     <p><%= book.year %></p>
                     <p><%= book.description %></p>
                     <div class="overlay_actions">
+                      <% if (favouritesList) { %>
                         <form action="/lists/<%= favouritesList.name %>/add-book" method="POST">
                           <input type="hidden" name="id" value="<%= book.id %>">
                           <input type="hidden" name="title" value="<%= book.title %>">
@@ -70,7 +71,9 @@
                             <img src="/icons/heart (3).png" alt="Add to Favorites" class="icon_image">
                           </button>
                         </form>
+                      <% } %>
 
+                      <% if (toBeReadList) { %>
                         <form action="/lists/<%= toBeReadList.name %>/add-book" method="POST">
                           <input type="hidden" name="id" value="<%= book.id %>">
                           <input type="hidden" name="title" value="<%= book.title %>">
@@ -83,7 +86,9 @@
                             <img src="/icons/save-instagram.png" alt="Add to Favorites" class="icon_image">
                           </button>
                         </form>
+                      <% } %>
 
+                      <% if (readList) { %>
                         <form action="/lists/<%= readList.name %>/add-book" method="POST">
                           <input type="hidden" name="id" value="<%= book.id %>">
                           <input type="hidden" name="title" value="<%= book.title %>">
@@ -96,7 +101,9 @@
                             <img src="/icons/check.png" alt="Add to Favorites" class="icon_image">
                           </button>
                         </form>
-                        <div class="custom_list_dropdown">
+                      <% } %>
+                                             
+                      <div class="custom_list_dropdown">
                           <button class="icon_button" title="Add to Custom List" onclick="toggleDropdown(this)">
                             <img src="/icons/add.png" alt="Add to Favorites" class="icon_image">
                           </button>

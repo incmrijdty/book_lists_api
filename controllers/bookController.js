@@ -45,7 +45,7 @@ exports.searchBooks = async (req, res) => {
     
 
     let books = docs.map(item => ({
-      id: item.key,
+      id: item.key.replace(/^\/+/, ''),
       title: item.title,
       authors: item.author_name || [],
       description: item.first_sentence?.[0] || '',
@@ -58,9 +58,9 @@ exports.searchBooks = async (req, res) => {
       books = books.filter(book => year.includes(String(book.year)));
     }
 
-    const favouritesList = List.findByName("Favourites");
-    const readList = List.findByName("Read");
-    const toBeReadList = List.findByName("To Be Read");
+    const favouritesList = List.findByName("Favourites") || null;
+    const readList = List.findByName("Read") || null;
+    const toBeReadList = List.findByName("To Be Read") || null;
 
     const savedLists = List.getAll();
     res.render('search.ejs', {

@@ -19,9 +19,9 @@ exports.getListsView = (req, res) => {
 
   const savedLists = List.getAll();
 
-  const favouritesList = List.findByName("Favourites");
-  const readList = List.findByName("Read");
-  const toBeReadList = List.findByName("To Be Read");
+  const favouritesList = List.findByName("Favourites") || null;
+  const readList = List.findByName("Read") || null;
+  const toBeReadList = List.findByName("To Be Read") || null;
 
 
     res.render("listsPage.ejs", {
@@ -64,9 +64,9 @@ exports.getListView = (request, response) => {
 
   const savedBooks = list.getBooks();
 
-  const favouritesList = List.findByName("Favourites");
-  const readList = List.findByName("Read");
-  const toBeReadList = List.findByName("To Be Read");
+  const favouritesList = List.findByName("Favourites") || null;
+  const readList = List.findByName("Read") || null;
+  const toBeReadList = List.findByName("To Be Read") || null;
 
   response.render("list.ejs", {
     headTitle: "List",
@@ -147,9 +147,7 @@ exports.getBooksFromUserList = (req, res) => {
 
 exports.deleteBookFromUserList = (req, res) => {
   const { name: listName, id: bookId } = req.params;
-
   const list = List.findByName(listName);
-
   if (!list) {
     return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
       headTitle: "404",
@@ -157,8 +155,9 @@ exports.deleteBookFromUserList = (req, res) => {
       activeLinkPath: "",
     });
   }
-
+  
   const deleted = list.deleteBook(bookId);
+
   if (!deleted) 
     return res.status(STATUS_CODE.NOT_FOUND).render("404.ejs", {
       headTitle: "404",
