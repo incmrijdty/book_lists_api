@@ -27,9 +27,11 @@ class List {
 
 
     addBook(book) {
-        if (!this.books.find(b => b.id === book.id))
+        if (!this.books.find(b => b.id === book.id)) {
             this.books.push(book);
             return book;
+        }
+        return null;
     }
     
 

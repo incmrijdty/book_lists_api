@@ -114,6 +114,7 @@ exports.addBookToUserList = (req, res) => {
   }
 
   const added = list.addBook({ id, title, authors, description, thumbnail });
+  console.log(added);
   if (!added) return res.status(STATUS_CODE.CONFLICT).render("409.ejs", {
       headTitle: "409",
       menuLinks: MENU_LINKS,
